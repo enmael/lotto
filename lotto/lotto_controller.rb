@@ -5,6 +5,7 @@ class LottoController < ApplicationController
         @lotto2 = @bynusu.sample(6)
         @lotto3 = @bynusu.sample(6)
         @lotto4 = @bynusu.sample(6)
+        @lotto5 = @bynusu.sample(6)
     end
 
 end
