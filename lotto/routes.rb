@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-    get '/gogo1', to: 'lotto#index'
+    get '/lotto23', to: 'lotto#index'
 end
