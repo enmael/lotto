@@ -9,18 +9,30 @@
         h1{
             color: honeydew;
             background: red;
+            text-align: center;
         }
+        .p_text{font-size:250%; text-align: center;}
+        .button{text-align: center;}
+        .wrapper{
+        width:80px;
+        margin:auto;
+    }
     
     </style>
 </head>
 <body>
     <h1>로또 번호 추첨기</h1>
     <hr width = "100%" align="left">
+    
+    <div class ="p_text">
     <p><%=@lotto1%></p>
     <p><%=@lotto2%></p>
     <p><%=@lotto3%></p>
     <p><%=@lotto4%></p>
-    <p><%=@lotto5%></p>
-    <input type="button" value="새로운번호"><br>
+    <p><%=@lotto5%></p>        
+    </div>
+    <div class ="wrapper"> 
+    <button onClick = "window.location.reload()">새로운 번호</button>  <!-버튼을 누르면 새로고침 되면서 새로운 번호가 출력->
+    </div>
 </body>
 </html>
