@@ -1,3 +1,20 @@
+<!--#############################################################################################
+    *프로그램명: 로또 추첨사이트
+    *소스파일명: lotto_html.html.erb
+    *작성자: 장승배
+    *버전: 1.0.0
+    *생성자: 장승배
+    *생성일자: 2021.10.20
+    *최종수정일자: 2021.11.30
+    *최종수정자: 장승배
+    *최종수정내용: 주석의 추가
+    --------------------------------------------------------------------------------------
+    *내용:html과 자바스크립트 로 작성된 로또 사이트의 전체적인 모습 코드
+    *추가 요구사항: 전체적인 코드의 설명 추가 와 다크모드의 수정 했으면 좋겠다. 
+                  버튼을 새로 고침이 아닌 새로운 방법으로 만들었으면 좋겠음
+
+#################################################################################################-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,20 +22,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로또 번호 추첨기 by. dogecoin</title>
-    
-    <script calss="sc">
-		var color = '#';
-		var letters = ['f6c9cc', 'a8c0c0', 'FEBF36', 'FF7238', '6475A0', 'acc7bf', '5e5f67', 'c37070', 'eae160', 'bf7aa3', 'd7d967'];
-		color += letters[Math.floor(Math.random() * letters.length)]; 
-		document.getElementById('wrap').style.background = color;
-	</script>
+
+<!--##############################################################################################
+    *프로그램명: 다크모드
+    *작성자: 장승배
+    *버전: 1.0.0
+    *생성자: 장승배
+    *생성일자: 2021.11.20
+    *최종수정일자: 2021.11.30
+    *최종수정자: 장승배
+    *최종수정내용: 주석의 추가 + 시간에 따른 다크 모드 기능 추가
+    --------------------------------------------------------------------------------------
+    *내용: 자바스크립트로 구현한 다크모드 (버튼으로 온오프 가능) +시간에 따른 다크모드 구현 완료.
+    *추가 요구사항: 저 두개의 스크립트를 합쳐서 작동했으면 좋겠음 + 다크모드시 번호 추첨하면 화이트 모드로 바뀌는 문제좀 해결했으면 좋겠다.
+
+    *출처: https://stickode.com/detail.html?no=2179
+
+####################################################################################################-->
     <script>
     function setDisplayAppreance(self){
     var body = document.querySelector('body'); 
-    var btn = document.getElementById('btnDisplayMode'); 
+    var btn = document.getElementById('btnDisplayMode');
+        
     if(self.value === '다크모드로 전환'){  //다크모드로 전환 버튼을 누른 경우
       body.style.backgroundColor = 'black';  //배경색 변경
-      body.style.color = 'white'; //css가 적용되지 않은 기본 텍스트 색상 변경
+      body.style.color = 'black'; //css가 적용되지 않은 기본 텍스트 색상 변경
       btn.style.backgroundColor = "yellow"; //버튼의 배경색 변경
       btn.style.color = "black"; //버튼의 텍스트 색상 변경
       self.value = '라이트모드로 전환';
@@ -28,43 +56,84 @@
       btn.style.backgroundColor = "black";
       btn.style.color = "white";
       self.value = '다크모드로 전환';
-    }
-  }
-    
+    };
+  };
     </script>
     
+    <!--시간에 따른 다크모드 -->
+    <script>
+    var date = new Date();
+    var hour = date.getHours();
+        
+    if(5 < hour && hour <18){
+        document.body.style.backgroundColor = 'white';
+        document.body.style.color = 'Black';
+    }else{
+        document.body.style.backgroundColor = 'Black';
+        document.body.style.color = 'Black';
+    }
+    </script>
+<!--###############################################################################################
+    *프로그램명: D -DAY출력 
+    *작성자: 장승배
+    *버전: 1.0.0
+    *생성자: 장승배
+    *생성일자: 2021.11.20
+    *최종수정일자: 2021.11.30
+    *최종수정자: 장승배
+    *최종수정내용: 주석의 추가
+    --------------------------------------------------------------------------------------
+    *내용: 로또 추첨하는 날의D -DAY 출력하는 프로그램
+    *추가 요구사항: 코드가 난잡해 보인다.
+
+    *출처: https://juyeol.tistory.com/12
+
+#####################################################################################################-->
 <script>
-    //디데이 종료 일자 설정
-var countDownDate = new Date("12 04, 2021 24:00:00").getTime();
+    
+    var countDownDate = new Date("12 04, 2021 18:00:00").getTime();                    //D-DAY 종료일 지정
 
-//1초마다 갱신되도록 함수 생성,실행 
-var x = setInterval(function() {
-// 오늘 날짜 등록 
-var now = new Date().getTime(); // 현재 날짜의 밀리초 계산
-// 종료일자에서 현재일자를 뺀 시간
-var distance = countDownDate - now;
-// 각 변수에 일, 시, 분, 초를 등록
-var d = Math.floor(distance / (1000 * 60 * 60 * 24));
-var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-var s = Math.floor((distance % (1000 * 60)) / 1000);
+    //1초마다 갱신되도록 함수 생성,실행 
+    var x = setInterval(function() {                                                
+    // 오늘 날짜 등록 
+    var now = new Date().getTime(); // 현재 날짜의 밀리초 계산
+    // 종료일자에서 현재일자를 뺀 시간
+    var distance = countDownDate - now;
+    // 각 변수에 일, 시, 분, 초를 등록
+    var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var s = Math.floor((distance % (1000 * 60)) / 1000);
 
-if(d === 0) {
-d = "DAY";
-}
+    if(d === 0) {
+    }
+    // 화면에 삽입
+    document.getElementById("d-day").innerHTML = "다음 로또 추첨까지: " + d +"일 " + h + "시간 " + m + "분 " + s + "초 남았습니다.";
 
-// 화면에 삽입
-document.getElementById("d-day").innerHTML = "다음 로또 추첨까지: " + d +"일 " + h + "시간 " + m + "분 " + s + "초 남았습니다.";
-
-}, 1000);
+    }, 1000);
     
 </script>
 
 </head>
     <body>
+<!--################################################################################################################
+    *프로그램명: 로또추첨 사이트 HTML 부
+    *작성자: 장승배
+    *버전: 1.0.0
+    *생성자: 장승배
+    *생성일자: 2021.10.20
+    *최종수정일자: 2021.11.30
+    *최종수정자: 장승배
+    *최종수정내용: 주석의 추가 + 버튼을 input 태그로 변경
+    --------------------------------------------------------------------------------------
+    *내용: 로또 추첨 사이트 의 모든 부분이 화면에 출력 되는 html 부분
+    *추가요구사항: 버튼을 새로 고침이 아닌 새로운 방법으로 만들었으면 좋겠음
+
+####################################################################################################################-->       
+        
     <h1>로또추첨사이트</h1>
     <div><h1 id="d-day"></h1></div>
-    <input id="btnDisplayMode" class="btn" type="button" value="다크모드로 전환" onclick="setDisplayAppreance(this);">
+    <input id="btnDisplayMode" class="btn2" type="button" value="다크모드로 전환" onclick="setDisplayAppreance(this);">
     
     <hr width = "100%" align="left">
     <div>    
@@ -131,11 +200,29 @@ document.getElementById("d-day").innerHTML = "다음 로또 추첨까지: " + d 
 			</td>
 		</tr><br>
         </table>
+        <div class ="btn1">
+        <input  class="btn3" type="button" value="새로운번호" onclick="window.location.reload();">                              
+        </div>
+        </div>
+        
+        
 
-        <div class ="wrapper">
-        <button onClick = "window.location.reload()">새로운 번호</button>  <!-버튼을 누르면 새로고침 되면서 새로운 번호가 출력->
-        </div>
-        </div>
+<!--###############################################################################################
+    *프로그램명: 화면 주식창 출력 
+    *작성자: 양성부
+    *버전: 1.0.0
+    *생성자: 장승배
+    *생성일자: 2021.11.25
+    *최종수정일자: 2021.11.30
+    *최종수정자: 양성부
+    *최종수정내용: 주석 추가
+    --------------------------------------------------------------------------------------
+    *내용: 화면 주식창 출력
+    *추가요구사항: 
+    
+    *출처: https://kr.tradingview.com/symbols/NASDAQ-AAPL  [TradingView 제공]
+
+#####################################################################################################-->
 <hr width = "100%" align="left">
 <div>
 <!-- TradingView Widget BEGIN -->
