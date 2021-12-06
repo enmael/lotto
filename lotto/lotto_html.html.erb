@@ -1,21 +1,19 @@
-<!--#############################################################################################
+<!--##############################################################################################################################################
     *프로그램명: 로또 추첨사이트
     *소스파일명: lotto_html.html.erb
     *작성자: 장승배
     *버전: 1.0.0
     *생성자: 장승배
     *생성일자: 2021.10.20
-    *최종수정일자: 2021.12.04
-    *최종수정자: 장승배
-    *최종수정내용: 주석의 추가
+    *최종수정일자: 2021.12.06
+    *최종수정자: 유형주
+    *최종수정내용: css 적용 클래스 최종 수정
     --------------------------------------------------------------------------------------
-    *내용:html과 자바스크립트 로 작성된 로또 사이트의 전체적인 모습 코드
-    *추가 요구사항: 전체적인 코드의 설명 추가 와 다크모드의 수정 했으면 좋겠다. 
-                  버튼을 새로 고침이 아닌 새로운 방법으로 만들었으면 좋겠음
-                - 코드에 대한 전체적인 설명 + 누가 언제 만들었는지를 표시하라 + 코드가 중구 난방한 주묵구구식이니 수정하라.
-                - 다크모드 적용시 글자 안바뀌는 문제도 수정해라 + 눈에 편한 색으로 바꿨으면 좋겠다.
+    *내용: html과 자바스크립트 로 작성됨
+          주 기능으로는 남은 로또 추첨일까지의 시간, 다크모드, 주식차트, 로또번호가 보이는곳이 있습니다.
+    *추가 요구사항: 
 
-#################################################################################################-->
+################################################################################################################################################-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,57 +23,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로또 번호 추첨기 by. dogecoin</title>
 
-<!--##############################################################################################
+<!--###############################################################################################################################################
     *프로그램명: 다크모드
     *작성자: 장승배
     *버전: 1.0.0
     *생성자: 장승배
     *생성일자: 2021.11.20
-    *최종수정일자: 2021.11.30
+    *최종수정일자: 2021.12.05
     *최종수정자: 장승배
-    *최종수정내용: 주석의 추가 + 시간에 따른 다크 모드 기능 추가
-    --------------------------------------------------------------------------------------
-    *내용: 자바스크립트로 구현한 다크모드 (버튼으로 온오프 가능) +시간에 따른 다크모드 구현 완료.
-    *추가 요구사항: 저 두개의 스크립트를 합쳐서 작동했으면 좋겠음 + 다크모드시 번호 추첨하면 화이트 모드로 바뀌는 문제좀 해결했으면 좋겠다.
+    *최종수정내용: 다크모드 스크립트
+    ------------------------------------------------------------------------------------------------------------------------------------------------
+    *내용: 자바스크립트로 작동하는 다크모드 입니다.
+          시간에 따라서 05시부터 17시59분59초까지는 화이트 모드로 작동하며 
+          버튼을 누를시 다크모드애서 화이트모드로 변경됩니다.
 
     *출처: https://stickode.com/detail.html?no=2179
 
-####################################################################################################-->
+################################################################################################################################################-->
     <script>
-    function setDisplayAppreance(self){
-    var body = document.querySelector('body'); 
-    var btn = document.getElementById('btnDisplayMode');
-        
-    if(self.value === '다크모드로 전환'){  //다크모드로 전환 버튼을 누른 경우
-      body.style.backgroundColor = 'black';  //배경색 변경
-      body.style.color = 'black'; //css가 적용되지 않은 기본 텍스트 색상 변경
-      btn.style.backgroundColor = "yellow"; //버튼의 배경색 변경
-      btn.style.color = "black"; //버튼의 텍스트 색상 변경
-      self.value = '라이트모드로 전환';
-    } else { //라이트모드로 전환 버튼을 누른 경우
-      body.style.backgroundColor = 'white';
-      body.style.color = 'black';
-      btn.style.backgroundColor = "black";
-      btn.style.color = "white";
-      self.value = '다크모드로 전환';
-    };
-  };
-    </script>
-    
-    <!--시간에 따른 다크모드 -->
-   <script>
     var date = new Date();
     var hour = date.getHours();
         
     if(5 < hour && hour <18){
         document.body.style.backgroundColor = 'white';
         document.body.style.color = 'Black';
+            function setDisplayAppreance(self){
+            var body = document.querySelector('body'); 
+            var btn = document.getElementById('btnDisplayMode');
+        
+            if(self.value === '다크모드로 전환'){              //다크모드로 전환 버튼을 누른 경우
+                  body.style.backgroundColor = 'black';      //배경색 변경
+                  body.style.color = 'black';                //css가 적용되지 않은 기본 텍스트 색상 변경
+                  btn.style.backgroundColor = "yellow";      //버튼의 배경색 변경
+                  btn.style.color = "black";                 //버튼의 텍스트 색상 변경
+                  self.value = '라이트모드로 전환';
+            }else {                                         //라이트모드로 전환 버튼을 누른 경우
+                  body.style.backgroundColor = 'white';
+                  body.style.color = 'black';
+                  btn.style.backgroundColor = "black";
+                  btn.style.color = "white";
+                  self.value = '다크모드로 전환';
+            };
+                  };
+        
+        
     }else{
         document.body.style.backgroundColor = 'Black';
         document.body.style.color = 'Black';
-    }
+            function setDisplayAppreance(self){
+            var body = document.querySelector('body'); 
+            var btn = document.getElementById('btnDisplayMode');
+
+            if(self.value === '라이트모드로 전환'){  
+                  body.style.backgroundColor = 'white';
+                  body.style.color = 'black';
+                  btn.style.backgroundColor = "black";
+                  btn.style.color = "white";
+                  self.value = '다크모드로 전환';
+                  self.value = '라이트모드로 전환';
+            }else { //라이트모드로 전환 버튼을 누른 경우
+
+                  body.style.backgroundColor = 'black'; 
+                  body.style.color = 'black'; 
+                  btn.style.backgroundColor = "yellow"; 
+                  btn.style.color = "black"; 
+                  self.value = '라이트모드로 전환';
+            };
+        
+
+                      };
+    }    
+    
+    
     </script>
-<!--###############################################################################################
+    
+<!--##############################################################################################################################################
     *프로그램명: D -DAY출력 
     *작성자: 장승배
     *버전: 1.0.0
@@ -86,119 +108,136 @@
     *최종수정내용: 주석의 추가
     --------------------------------------------------------------------------------------
     *내용: 로또 추첨하는 날의D -DAY 출력하는 프로그램
-    *추가 요구사항: 코드가 난잡해 보인다.
 
     *출처: https://juyeol.tistory.com/12
 
-#####################################################################################################-->
+#############################################################################################################################################-->
 <script>
     
-    var countDownDate = new Date("12 11, 2021 18:00:00").getTime();                    //D-DAY 종료일 지정
+    var countDownDate = new Date("12 11, 2021 18:00:00").getTime();                     //D-DAY 종료일 지정
+ 
+    var x = setInterval(function() {                                                   //1초마다 갱신되도록 함수 생성,실행               
+    var now = new Date().getTime();                                                    // 오늘 날짜 등록 // 현재 날짜의 밀리초 계산
+    var distance = countDownDate - now;                                                // 종료일자에서 현재일자를 뺀 시간
 
-    //1초마다 갱신되도록 함수 생성,실행 
-    var x = setInterval(function() {                                                
-    // 오늘 날짜 등록 
-    var now = new Date().getTime(); // 현재 날짜의 밀리초 계산
-    // 종료일자에서 현재일자를 뺀 시간
-    var distance = countDownDate - now;
-    // 각 변수에 일, 시, 분, 초를 등록
-    var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var d = Math.floor(distance / (1000 * 60 * 60 * 24));                               // 각 변수에 일, 시, 분, 초를 등록
     var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var s = Math.floor((distance % (1000 * 60)) / 1000);
 
     if(d === 0) {
     }
-    // 화면에 삽입
-    document.getElementById("d-day").innerHTML = "다음 로또 추첨까지: " + d +"일 " + h + "시간 " + m + "분 " + s + "초 남았습니다.";
+    document.getElementById("d-day").innerHTML = "다음 로또 추첨까지: " + d +"일 " + h    // 화면에 삽입
+        + "시간 " + m + "분 " + s + "초 남았습니다.";
 
-    }, 1000);
+    }
+    );
     
 </script>
+<!--###########################################################################################################################################-->
 
 </head>
     <body>      
     <h1>로또추첨사이트</h1>
     <div><h1 id="d-day"></h1></div>
+    <div class="a2">
     <input id="btnDisplayMode" class="btn2" type="button" value="다크모드로 전환" onclick="setDisplayAppreance(this);">
-    
+    </div>
     
         
-<!--###########-->
+<!--###########################################################################################################################################-->
 <div class="main">
-   <input id="tab1" type="radio" name="tabs" checked class="as"> <!--디폴트 메뉴-->
-    <label for="tab1" calss ="bs"><p class ="lo">로또 추첨</p></label>
+   <input id="tab1" type="radio" name="tabs" checked class="tab_letter"> <!--디폴트 메뉴-->
+    <label for="tab1"><p class ="tab_color">로또 추첨</p></label>
 
-    <input id="tab2" type="radio" name="tabs" class="as">
-    <label for="tab2" calss ="bs"><p class ="lo">주식 차트</p></label>
+    <input id="tab2" type="radio" name="tabs" class="tab_letter">
+    <label for="tab2"><p class ="tab_color">주식 차트</p></label>
 
-<!--###########################################################################################################################-->
+<!--############################################################################################################################################-->
     <section id="content1">
     <table>
 		<tr>
 			<td>
-            <div class="len1"><%=@lotto_yellow1[0]%></div>
-            <div class="len1"><%=@lotto_yellow1[1]%></div>
-            <div class="len2"><%=@lotto_red1[0]%></div>
-            <div class="len3"><%=@lotto_green1[0]%></div>
-            <div class="len4"><%=@lotto_number1[0]%></div>
-            <div class="len4"><%=@lotto_number1[1]%></div>
+            <div class="lottery_ball_1"><%=@lotto_yellow1[0]%></div>
+            <div class="lottery_ball_1"><%=@lotto_yellow1[1]%></div>
+            <div class="lottery_ball_2"><%=@lotto_red1[0]%></div>
+            <div class="lottery_ball_3"><%=@lotto_green1[0]%></div>
+            <div class="lottery_ball_4"><%=@lotto_number1[0]%></div>
+            <div class="lottery_ball_4"><%=@lotto_number1[1]%></div>
 			</td>
 		</tr>
 		<tr>
 			<td>
-            <div class="len1"><%=@lotto_yellow2[0]%></div>
-            <div class="len1"><%=@lotto_yellow2[1]%></div>
-            <div class="len2"><%=@lotto_red2[0]%></div>
-            <div class="len3"><%=@lotto_green2[0]%></div>
-            <div class="len4"><%=@lotto_number2[0]%></div>
-            <div class="len4"><%=@lotto_number2[1]%></div>
+            <div class="lottery_ball_1"><%=@lotto_yellow2[0]%></div>
+            <div class="lottery_ball_1"><%=@lotto_yellow2[1]%></div>
+            <div class="lottery_ball_2"><%=@lotto_red2[0]%></div>
+            <div class="lottery_ball_3"><%=@lotto_green2[0]%></div>
+            <div class="lottery_ball_4"><%=@lotto_number2[0]%></div>
+            <div class="lottery_ball_4"><%=@lotto_number2[1]%></div>
 			</td>
 		</tr>
 		<tr>
 			<td>
-            <div class="len1"><%=@lotto_yellow3[0]%></div>
-            <div class="len1"><%=@lotto_yellow3[1]%></div>
-            <div class="len2"><%=@lotto_red3[0]%></div>
-            <div class="len3"><%=@lotto_green3[0]%></div>
-            <div class="len4"><%=@lotto_number3[0]%></div>
-            <div class="len4"><%=@lotto_number3[1]%></div>
+            <div class="lottery_ball_1"><%=@lotto_yellow3[0]%></div>
+            <div class="lottery_ball_1"><%=@lotto_yellow3[1]%></div>
+            <div class="lottery_ball_2"><%=@lotto_red3[0]%></div>
+            <div class="lottery_ball_3"><%=@lotto_green3[0]%></div>
+            <div class="lottery_ball_4"><%=@lotto_number3[0]%></div>
+            <div class="lottery_ball_4"><%=@lotto_number3[1]%></div>
             </td>
 		</tr>
 		<tr>
 			<td>
-            <div class="len1"><%=@lotto_yellow4[0]%></div>
-            <div class="len1"><%=@lotto_yellow4[1]%></div>
-            <div class="len2"><%=@lotto_red4[0]%></div>
-            <div class="len3"><%=@lotto_green4[0]%></div>
-            <div class="len4"><%=@lotto_number4[0]%></div>
-            <div class="len4"><%=@lotto_number4[1]%></div>
+            <div class="lottery_ball_1"><%=@lotto_yellow4[0]%></div>
+            <div class="lottery_ball_1"><%=@lotto_yellow4[1]%></div>
+            <div class="lottery_ball_2"><%=@lotto_red4[0]%></div>
+            <div class="lottery_ball_3"><%=@lotto_green4[0]%></div>
+            <div class="lottery_ball_4"><%=@lotto_number4[0]%></div>
+            <div class="lottery_ball_4"><%=@lotto_number4[1]%></div>
 			</td>
 		</tr>
 		<tr>
 			<td>
-            <div class="len1"><%=@lotto_yellow5[0]%></div>
-            <div class="len1"><%=@lotto_yellow5[1]%></div>
-            <div class="len2"><%=@lotto_red5[0]%></div>
-            <div class="len3"><%=@lotto_green5[0]%></div>
-            <div class="len4"><%=@lotto_number5[0]%></div>
-            <div class="len4"><%=@lotto_number5[1]%></div>
+            <div class="lottery_ball_1"><%=@lotto_yellow5[0]%></div>
+            <div class="lottery_ball_1"><%=@lotto_yellow5[1]%></div>
+            <div class="lottery_ball_2"><%=@lotto_red5[0]%></div>
+            <div class="lottery_ball_3"><%=@lotto_green5[0]%></div>
+            <div class="lottery_ball_4"><%=@lotto_number5[0]%></div>
+            <div class="lottery_ball_4"><%=@lotto_number5[1]%></div>
 			</td>
 		</tr><br>
         </table>
-    
-       <div class ="btn1">
-        <input  class="btn3" type="button" value="새로운번호" onclick="window.location.reload();">                              
-        </div>
         
+        <div class ="btn1">
+            <input  class="btn3" type="button" value="새로운번호" onclick="window.location.reload();">                              
+        </div>
     </section>
-<!--###########################################################################################################################-->
+
+<!--##############################################################################################################################################
+    *프로그램명: 주식차트 
+    *작성자: 양성부
+    *생성자: 양성부
+    *생성일자: 2021.11.20
+    *최종수정일자: 2021.11.30
+    *최종수정자: 양성부
+    *최종수정내용: 
+    --------------------------------------------------------------------------------------
+    *내용: 로또 추첨하는 날의D -DAY 출력하는 프로그램
+
+    *출처: https://s3.tradingview.com/tv.js
+
+##############################################################################################################################################-->
+    
     <section id="content2">
     <div>
 <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
   <div id="tradingview_69044"></div>
-  <div class="tradingview-widget-copyright">TradingView 제공 <a href="https://kr.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL 차트</span></a></div>
+        <div class="tradingview-widget-copyright">TradingView 제공 
+            <a href="https://kr.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank">
+                <span class="blue-text">AAPL 차트</span>
+            </a>
+        </div>
   <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <script type="text/javascript">
   new TradingView.widget(
@@ -222,13 +261,7 @@
 </div>
     </section>
 </div>      
-<!--################################################################################################################################-->        
-<hr width = "100%" align="left">
-    <div>
-        <div>
-          <div id="tradingview_69044"></div>
-          <div class="tradingview-widget-copyright">TradingView 제공 <a href="https://kr.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL 차트</span></a></div>
-        </div>
-    </div>
+<!--############################################################################################################################################-->        
+<hr width = "100%" align="left" color='#4A7FFB'>
 </body>
 </html>

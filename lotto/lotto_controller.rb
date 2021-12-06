@@ -22,9 +22,7 @@ class LottoController < ApplicationController
     def lotto_html   #lolotto_controller 와 lotto_html의 연결해주는 부분
         
         yellow_ball = [*1..10]                              #노란색 공의 범위는 1~10
-        blue_ball = [*11..20]                               #파란색 공의 범위는 11~20
         red_ball = [*21..30]                                #빨간색 공의 범위는 21~30
-        black_ball=[*31..40]                                #검은색 공의 범위는 31~40
         green_ball=[*41..45]                                #초록색 공의 범위는 41~45
         number3 = [*1..45]                                  #나머지 공의 범위는 1~45
         
