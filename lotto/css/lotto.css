@@ -125,13 +125,13 @@ input:checked + label{              /*탭 디자인 */
     }
 
         #tab1:checked ~ #content1,
-        #tab2:checked ~ #content2, {
+        #tab2:checked ~ #content2 { 
             display: block;}
 
 section {
             display: none;
             padding: 20px 0 0;
-            border-top: 1px solid #4A7FFB;} //로또 공과 주식차트를 나누어주는 css
+            border-top: 1px solid #4A7FFB;} /*로또 공과 주식차트를 나누어주는 css*/
 
         
 .tab_letter { /*라디오버튼 동그라미 숨기기*/
